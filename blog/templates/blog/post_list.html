@@ -1,59 +1,14 @@
-<html>
-    <head>
-        <title>Aburitoh's Profile</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Aburitoh's DBA Blog</a></h1>
-            <h3>An Oracle Certified Associate</h3>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p>published: 14.09.2016, 12:14</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                    <p>published: {{ post.published_date }}</p>
+                </div>
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
         </div>
-        
-        {% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-
-        <div>
-            <h2>Profile</h2>
-            <p>With over 7 years of IT experience, Ms. Mofor is an Oracle DBA, participating in large databases/large-scale database environments with mission-critical OLAP Systems, as well as OLTP. Managing technical architecture, she supports in system analysis, design and testing development. She is proficient and experienced in fast-pace, Agile environments - SCRUM, SDLC and Configuration Management.
-Responsible for Oracle Databases application operations, Ms. Mofor possess excellent written and verbal communication skills that allow her to be a self-starter, a constant problem solver with deep critical thinking skills. The exceptional team- player, Aburitoh Mofor, is a result-driven professional who has worked across multi- platforms with duties including but not limited to: maintenance, configuration, schema management, administration, patches and upgrades, resource management performance tuning, backup and recovery, security, migration, scripting.
-￼￼￼￼￼￼￼￼￼￼￼￼￼￼Washington, DC
-** US Citizen --- Natural-born, Authorized to work in the US for any Employer **</p>
-        </div>
-
-        <div>
-            <h3>Technical Skills</h3>
-            <p>RDBMS - Oracle 12c/11g R2 (11.2.0.4) /10g
-Languages - Oracle SQL, PL/SQL, Bash & Korn Shell Scripting, Python Tuning Utilities - SQL Trace, AWR, ADDM, Explain Plan, ASH, ADRCI, TKPROF
-Software/Applications/Tools - SQLDeveloper, SQL*Plus,
-Oracle Enterprise Manager (OEM) - Cloud Control & Grid Control, SQL*Loader, Recovery Manager (RMAN), RAC, DataGuard, DataPump (expdp/impdp), Net Manager, DBUA Netca, NetStat, DBCA, Imp&Exp, TOAD, Microsoft Office, [Statistical - SAS, STATA, Atlas Ti], [Cloud Computing - Amazon Web Services (AWS)],
-Web Tools and Framework - HTML, XML, Django, [Source Code Control Tools] - Git, Github
-Operating Systems - Red Hat Enterprise Linux (RHEL), Solaris, Windows Technical Writing - Documentation: SOPs [Standard Operating Procedures], Environment, Object, DBA Unit Org., Application and Process Virtualization - VMware and Oracle Virtual Box</p>
-        </div>
-        
-        <div>
-            <h3>Experience</h3>
-            <p>US-Africa Chamber of Commerce, Washington, DC, Oracle Database Administrator (Nov. 2014 - Sept. 2016); JBS International, Rockville, MD, Database Engineer (Mar. 2012 - Aug. 2014); US Agency of International Development, Rockville, MD, Jr. Database Administrator (Feb. 2010 - Jan. 2012); Face2Face Africa, Washington, DC, Business Analyst (Feb. 2009 - Jan. 2010)</p>
-        </div>
-        
-        <div>
-            <h3>Education & Training</h3>
-            <p>Bachelors of Science - University of Maryland, 2009-2014; Oracle Database 11g Administrator Certified Associate(OCA), Oracle Database 11g Certified Expert: SQL Fundamentals I</p>
-        </div>
-        
-        <div>
-            <h3>Professional Associations</h3>
-            <p>DjangoGirls - Fall Workshop Affiliant, PyLadies, DC - Member, DataWranglersDC - Member, National Society for Black Engineers(NSBE), Region II Member</p>
-        </div>
-        
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
